@@ -1,3 +1,25 @@
+// Task 1
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".gallery .image"); // Беремо всі картинки
+  let currentIndex = 0; // Початковий індекс
+
+  function updateGallery() {
+    images.forEach((img, index) => {
+      img.style.display = index === currentIndex ? "block" : "none"; // Показуємо тільки активну картинку
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      currentIndex = (currentIndex + 1) % images.length; // Перехід вперед (зациклено)
+    } else if (event.key === "ArrowLeft") {
+      currentIndex = (currentIndex - 1 + images.length) % images.length; // Перехід назад (зациклено)
+    }
+    updateGallery();
+  });
+
+  updateGallery(); // Встановлюємо перше зображення активним
+});
 // Task 2
 const getControls = document.querySelector("#controls");
 const getInp = getControls.querySelector("input");
